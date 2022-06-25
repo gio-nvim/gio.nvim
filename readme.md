@@ -1,1 +1,1 @@
-# goi.nvim
+# gio.nvim
