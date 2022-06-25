@@ -1,5 +1,5 @@
 ---          ---
---- GOI.NVIM ---
+--- GIO.NVIM ---
 ---          ---
 
-require "goi.plugin.ensure" -- Install paq and lazily-nvim
+require "gio.plugin.ensure" -- Install paq and lazily-nvim

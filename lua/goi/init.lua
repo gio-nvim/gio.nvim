@@ -1,1 +1,0 @@
--- here lays goi core

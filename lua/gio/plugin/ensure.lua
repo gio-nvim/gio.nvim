@@ -5,7 +5,7 @@ local function ensure(repository)
     local destination = string.format("%s/paqs/opt/%s", pack_path, name)
 
     if vim.fn.empty(vim.fn.glob(destination)) > 0 then
-        vim.notify("GOI: auto-installing " .. repository .. "...")
+        vim.notify("GIO: auto-installing " .. repository .. "...")
         vim.fn.system({
             "git", "clone", "--depth", "1",
             "https://github.com/" .. repository, destination,
@@ -13,11 +13,11 @@ local function ensure(repository)
 
         if vim.v.shell_error ~= 0 then
             vim.notify(
-                "GOI: failed to auto-install " .. repository .. "...",
+                "GIO: failed to auto-install " .. repository .. "...",
                 vim.log.levels.ERROR
             )
         else
-            vim.notify("GOI: auto-installed " .. repository .. "...")
+            vim.notify("GIO: auto-installed " .. repository .. "...")
         end
     end
 end
