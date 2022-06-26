@@ -2,5 +2,6 @@
 --- GIO.NVIM ---
 ---          ---
 
-require "gio.plugin.ensure" -- Install paq and lazily-nvim
-require "list"              -- Source list of modules
+require "gio"                -- Preconfiguration
+require "gio".load_modules() -- Load lua/modules/*/init.lua
+require "gio".plug()         -- Install plugins
