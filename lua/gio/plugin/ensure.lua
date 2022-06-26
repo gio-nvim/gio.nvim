@@ -2,7 +2,7 @@ local pack_path = vim.fn.stdpath("data") .. "/site/pack"
 
 local function ensure(repository)
     local name = vim.split(repository, "/")[2]
-    local destination = string.format("%s/paqs/opt/%s", pack_path, name)
+    local destination = string.format("%s/packer/start/%s", pack_path, name)
 
     if vim.fn.empty(vim.fn.glob(destination)) > 0 then
         vim.notify("GIO: auto-installing " .. repository .. "...")
@@ -22,8 +22,4 @@ local function ensure(repository)
     end
 end
 
-ensure("savq/paq-nvim")          -- Default plugin manager
-ensure("Chromosore/lazily-nvim") -- Lazy-loader
-
-vim.cmd "packadd paq-nvim"
-vim.cmd "packadd lazily-nvim"
+ensure("wbthomason/packer.nvim")
