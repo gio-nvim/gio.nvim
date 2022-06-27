@@ -5,4 +5,5 @@ return {
     tsinstall = require "gio.utils".tsinstall,
     plug = require "gio.plugin.manager".install,
     load_modules = require "gio.utils".autoload_modules,
+    set = require "gio.utils".set,
 }

@@ -24,4 +24,27 @@ function utils.autoload_modules()
         require(module)
     end
 end
+function utils.set(opt)
+    if type(opt) == "string" then
+        if opt:sub(1, 2) == "no" then
+            vim.opt[opt:sub(3)] = false
+        else
+            vim.opt[opt] = true
+        end
+    else
+        if vim.tbl_islist(opt) then
+            for _, option in ipairs(opt) do
+                if option:sub(1, 2) == "no" then
+                    vim.opt[option:sub(3)] = false
+                else
+                    vim.opt[option] = true
+                end
+            end
+        else
+            for key, value in pairs(opt) do
+                vim.opt[key] = value
+            end
+        end
+    end
+end
 return utils
