@@ -154,12 +154,25 @@
      Be careful when you use `@` char in your config strings!
 
 **** Manager.install
-     #Refactor this to a better version: presenting an example table config, and reading code with examples from our table.#
-     This one is a bit complex. But if we look closer, it does a pretty clean job!
-     This function iterates over our `Manager.plugins` table.
-     So we have something like `organization@nvim-neorg/neorg` and `{ -- some config -- }` every iteration.
-     Then it "parses" key of the current iteration into module and location - `organization` and `nvim-neorg/neorg` in our case.
-     #TODO#
+     This one is a bit complex. Let's use an example config for this one.
+     (the code is taken from `lua/modules/organization/init.lua`
+     @code lua
+     require("gio.plugin.manager").plugins["organization@nvim-neorg/neorg"] = {
+         config = "@neorg",
+         event = { "BufRead", "BufNewFile" },
+         requires = { "nvim-treesitter" },
+     }
+     @end
+     Now you might ask, why we even need the `organization@` part? Look closer at the `config` field:
+     @code lua
+     config = "@neorg",
+     @end
+     See that `@`? When `Manager.install` reads this key it gets expanded to `require("modules.%MODULE%.neorg")`.
+     Be careful when you use `@` char!
+
+     And now, about the function itself. It just iterates over `Manager.plugins` table, parses key, value's config field,
+     and runs packer on the formatted plugin specifications.
+
      #tangle ./lua/gio/plugin/manager.lua
      @code lua
      function Manager.install()
