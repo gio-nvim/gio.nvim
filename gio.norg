@@ -14,6 +14,7 @@
        tsinstall = require "gio.utils".tsinstall,
        plug = require "gio.plugin.manager".install,
        load_modules = require "gio.utils".autoload_modules,
+       set = require "gio.utils".set,
    }
    @end
 ** utils.lua
@@ -65,6 +66,38 @@
             :gsub(vim.pesc(path), "")
             :gsub("/lua/", "")
             require(module)
+        end
+    end
+    @end
+*** set
+    A handy wrapper around `vim.opt`. Works like average `:set` command!
+    Examples:
+    - `set "nu"`
+    - `set { "nu", "rnu" }`
+    - `set { "nu" = true, "rnu" = true }`
+    #tangle ./lua/gio/utils.lua
+    @code lua
+    function utils.set(opt)
+        if type(opt) == "string" then
+            if opt:sub(1, 2) == "no" then
+                vim.opt[opt:sub(3)] = false
+            else
+                vim.opt[opt] = true
+            end
+        else
+            if vim.tbl_islist(opt) then
+                for _, option in ipairs(opt) do
+                    if option:sub(1, 2) == "no" then
+                        vim.opt[option:sub(3)] = false
+                    else
+                        vim.opt[option] = true
+                    end
+                end
+            else
+                for key, value in pairs(opt) do
+                    vim.opt[key] = value
+                end
+            end
         end
     end
     @end
@@ -205,4 +238,3 @@
     @code lua
     return Manager
     @end
-
