@@ -34,6 +34,7 @@ set "breakindent"
 
 -- Visual
 set "list"
+set "noruler"
 set "cursorline"
 set "termguicolors"
 set { inccommand = "split" }
@@ -47,6 +48,9 @@ set {
         nbsp = "N",
     }
 }
+
+-- Folds
+set "nofoldenable"
 
 -- Misc
 set "lazyredraw"
