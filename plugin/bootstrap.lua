@@ -28,16 +28,11 @@ local function is_installed(name, kind)
 end
 vim.defer_fn(function()
     ensure "wbthomason/packer.nvim"
-    ensure "udayvir-singh/tangerine.nvim"
+    ensure "rktjmp/hotpot.nvim"
 
-    if is_installed "tangerine.nvim" then
-        vim.api.nvim_command "packadd tangerine.nvim"
-        require("tangerine").setup {
-            rtpdirs = { "after" },
-            compiler = {
-                hooks = { "onsave", "oninit" }
-            }
-        }
+    if is_installed "hotpot.nvim" then
+        vim.api.nvim_command "packadd hotpot.nvim"
+        require("hotpot").setup {}
     end
 
     vim.api.nvim_command "packadd packer.nvim"
