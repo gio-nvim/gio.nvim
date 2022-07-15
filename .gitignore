@@ -1,1 +1,3 @@
-plugin/packer_compiled.lua
+plugin/packer_compiled.lua # Packer code
+fnl/.gitignore             # File that overrides root .gitignore
+fnl/composer.fnl           # Composer file that will not be on upstream
