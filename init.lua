@@ -50,5 +50,12 @@ vim.defer_fn(function()
     vim.api.nvim_command "packadd packer.nvim"
 
     require "hotpot".setup {}
-    pcall(require, "composer")
-end, 0)
+    xpcall(
+        function()
+            require "composer"
+        end,
+        function()
+            print "wip"
+        end
+    )
+    end, 0)
