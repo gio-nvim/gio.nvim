@@ -63,16 +63,9 @@
 	 (-> :config
 	     (vim.fn.stdpath)
 	     (.. :/fnl/composer.fnl)
-	     (io.open :w+))
-	 gitignore-file
-	 (-> :config
-	     (vim.fn.stdpath)
-	     (.. :/fnl/.gitignore)
 	     (io.open :w+))]
     (composer-file:write file_string)
-    (composer-file:close)
-    (gitignore-file:write :!composer.fnl)
-    (gitignore-file:close)))
+    (composer-file:close)))
 
 ;; setup every module in list
 (lambda compose [modules]
