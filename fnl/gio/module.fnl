@@ -28,9 +28,12 @@
 		       ?lazy-load)
        `(lambda [name] (script name ,source ,?lazy-load)))
 
-(lambda module-eval [module source name]
+(lambda module-eval [source name]
   (each [_ func (ipairs source)]
 	(func name)))
+
+(lambda module-ret [module source]
+  {: module :eval (lambda [] (module-eval source module.name))})
 
 (macro module! [definition]
        (assert-compile (= (type definition) :table) "Module's definition must be a table" definition)
@@ -39,5 +42,5 @@
        (assert-compile (= (type definition.source) :table) "Module's source must be a table" definition.source)
        (local module {:name definition.name
 	      :description definition.description})
-       `(module-eval ,module ,definition.source ,module.name))
+       `(module-ret ,module ,definition.source))
 

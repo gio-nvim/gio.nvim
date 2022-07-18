@@ -1,7 +1,7 @@
 (local module_table {})
 
-(macro inbuilt! [module description]
-  `(tset module_table ,module {:description ,description :enabled true}))
+(macro inbuilt! [module]
+  `(tset (. module_table ,module) :enabled true))
 
 (lambda format_file_string [name max_length description enabled]
   (.. 
@@ -33,12 +33,10 @@
   ;; disable every module
   (each [_ module (ipairs modules)]
 	(if (not (= module ""))
-	  (tset module_table module {:enabled false})))
+	  (let [module_def (. (require (.. :modules. module)) :module)]
+	    (tset module_table module {:enabled false :description module_def.description}))))
 
   ;; preconfigure default modules
-  ;; TODO: fetch description from module metadata
-  ;;(inbuilt! :notes "Module that sets up note-taking stuff")
-  ;;(inbuilt! :colors "Module that sets up color-related stuff")
 
   ;; Get the max length of module name
   (var max_module_name_length 0)
@@ -76,11 +74,10 @@
     (gitignore-file:write :!composer.fnl)
     (gitignore-file:close)))
 
-;; require every module in list
+;; setup every module in list
 (lambda compose [modules]
   (each [_ module (ipairs modules)]
-	(->> module
-	     (.. :modules.)
-	     (require))))
+	(local func (. (require (.. :modules. module)) :eval))
+	(func)))
 
 {: generate : compose}
