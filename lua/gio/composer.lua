@@ -8,17 +8,23 @@ local function edit_path(module, path, uneditable)
 end
 
 local function define(definition)
-    local packages = definition.source.packages
-    local scripts = definition.source.scripts
+    local packages = definition.source.packages or {}
+    local scripts = definition.source.scripts or {}
     for source, config in pairs(packages) do
         config.config = edit_path(
             definition.name,
             config.config,
             config.force_default_config
         )
-    config.force_default_config = nil
-    config[1] = source
+        config.force_default_config = nil
+        config[1] = source
         table.insert(pkgs, config)
+    end
+
+    for source, config in pairs(scripts) do
+        if vim.tbl_isempty(config) then
+            loadstring(edit_path(definition.name, source))()
+        end
     end
 end
 
