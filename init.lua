@@ -44,9 +44,6 @@ vim.defer_fn(function()
     ensure "wbthomason/packer.nvim"
 
     vim.api.nvim_command "packadd packer.nvim"
-
-    local ok, value pcall(require, "composer")
-    if not ok then
-    -- TODO
-    end
+    require "composer"
 end, 0)
+
