@@ -8,6 +8,7 @@ return {
                 config = "parsers",
                 event = "BufEnter"
             },
+            ["nvim-treesitter/playground"] = { after = "nvim-treesitter" },
         },
     }
 }
