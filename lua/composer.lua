@@ -1,5 +1,7 @@
 require "gio".compose {
     "colors",
     "vim",
+    "navigation",
+    "misc",
 }
 
