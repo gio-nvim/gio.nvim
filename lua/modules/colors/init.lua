@@ -3,7 +3,7 @@ return {
     ["description"] = "Module that manages highlights-related stuff",
     ["source"] = {
         ["packages"] = {
-            ["kvrohit/rasmus.nvim"] = { config = "theme" },
+            ["catppuccin/nvim"] = { as = "catppuccin", config = "theme" },
             ["nvim-treesitter/nvim-treesitter"] = {
                 config = "parsers",
                 event = "BufEnter"
