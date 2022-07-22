@@ -5,5 +5,8 @@ return {
         ["packages"] = {
             ["anuvyklack/hydra.nvim"] = { config = "hydra" },
         },
+        ["scripts"] = {
+            ["maps"] = {},
+        },
     },
 }
