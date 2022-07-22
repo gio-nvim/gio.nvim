@@ -6,6 +6,7 @@ return {
             ["options"] = {},
             ["plugins"] = {},
             ["keymaps"] = {},
+            ["locale"] = {},
         }
     }
 }
