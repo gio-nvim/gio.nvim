@@ -36,7 +36,7 @@ vim.api.nvim_command "filetype plugin indent off"
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
-require "modules.colors.theme"
+pcall(require, "modules.colors.theme")
 
 vim.defer_fn(function()
     vim.api.nvim_command "runtime! plugin/**/*.vim"
@@ -51,6 +51,5 @@ vim.defer_fn(function()
     vim.api.nvim_command "packadd packer.nvim"
     require "composer"
     vim.api.nvim_exec_autocmds("BufEnter", {})
-    vim.cmd "e"
 end, 0)
 
