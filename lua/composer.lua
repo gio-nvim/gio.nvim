@@ -3,5 +3,6 @@ require "gio".compose {
     "vim",
     "navigation",
     "misc",
+    "mappings",
 }
 
