@@ -4,6 +4,13 @@ vim.opt.conceallevel = 2
 vim.opt.clipboard = "unnamedplus"
 vim.opt.laststatus = 3
 
+---> Disabling something
+vim.opt.shortmess = "asIcF"
+vim.opt.fillchars = { eob = " " }
+vim.opt.hlsearch = false
+vim.opt.ruler = false
+vim.opt.showmode = false
+
 ---> time
 vim.opt.timeoutlen = 500
 vim.opt.updatetime = 500
