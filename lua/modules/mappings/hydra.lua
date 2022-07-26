@@ -63,4 +63,3 @@ hydra {
     },
 }
 
-print "Hello"
