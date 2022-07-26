@@ -4,5 +4,6 @@ require "gio".compose {
     "navigation",
     "misc",
     "mappings",
+    "git",
 }
 
