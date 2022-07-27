@@ -1,5 +1,4 @@
 require "github-theme".setup {
-    colors = {},
     comment_style = "italic",
     dark_float = true,
     dark_sidebar = true,
@@ -10,3 +9,7 @@ require "github-theme".setup {
     sidebars = { "packer" },
     theme_style = "dark_default",
 }
+
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { link = "MiniStatuslineModeInsert" })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { link = "MiniStatuslineModeNormal" })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { link = "MiniStatuslineModeReplace" })
