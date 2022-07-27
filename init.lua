@@ -36,7 +36,7 @@ vim.api.nvim_command "filetype plugin indent off"
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
-pcall(require, "modules.colors.theme")
+pcall(require, "modules.colors.github")
 
 vim.defer_fn(function()
     vim.api.nvim_command "runtime! plugin/**/*.vim"
