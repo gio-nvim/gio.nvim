@@ -9,7 +9,8 @@ return {
                 requires = "nvim-lua/plenary.nvim",
                 cmd = "Telescope",
                 module_pattern = "telescope.",
-            }
+            },
+            ["kylechui/nvim-surround"] = { config = "surround" },
         },
     },
 }
