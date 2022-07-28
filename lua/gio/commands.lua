@@ -9,12 +9,10 @@ end
 function subcommands.module(modulename)
     if modulename == nil then
         if telescope_installed() then
-            require "telescope.builtin".find_files({
-                cwd = "lua/modules",
-                search_file = "**/init.lua"
-            })
+            require "telescope".extensions.gio.module()
         else
             print "Please provide module name!"
+            print "Hit <Tab> for autocomplete!"
         end
         return
     end
