@@ -102,6 +102,17 @@ local function module(opts)
                     state.get_selected_entry()[1]
                 )))
             end)
+            map("i", "<M-;>", function()
+                actions.close(prompt_bufnr)
+                require "telescope.builtin".find_files {
+                    cwd = vim.fn.expand(string.format("%s/lua/modules/%s/",
+                        vim.fn.stdpath "config",
+                        state.get_selected_entry()[1]
+                    )),
+                    prompt_title = "gio.nvim",
+                    results_title = string.format("viewing `%s` module files", state.get_selected_entry()[1]),
+                }
+            end)
             return true
         end
     }):find()
