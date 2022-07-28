@@ -1,10 +1,14 @@
 -- TODO: create custom telescope picker
 local subcommands = {}
 
+local function telescope_installed()
+    local installed, _ = pcall(require, "telescope")
+    return installed
+end
+
 function subcommands.module(modulename)
     if modulename == nil then
-        local telescope_installed, _ = pcall(require, "telescope")
-        if telescope_installed then
+        if telescope_installed() then
             require "telescope.builtin".find_files({
                 cwd = "lua/modules",
                 search_file = "**/init.lua"
