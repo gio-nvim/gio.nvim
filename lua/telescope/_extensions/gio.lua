@@ -97,7 +97,7 @@ local function module(opts)
         attach_mappings = function(prompt_bufnr, map)
             actions.select_default:replace(function()
                 actions.close(prompt_bufnr)
-                vim.cmd(vim.fn.expand(string.format("%s/modules/%s/init.lua",
+                vim.cmd(vim.fn.expand(string.format("edit %s/lua/modules/%s/init.lua",
                     vim.fn.stdpath "config",
                     state.get_selected_entry()[1]
                 )))
