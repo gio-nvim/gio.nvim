@@ -5,5 +5,6 @@ require "gio".compose {
     "misc",
     "mappings",
     "git",
+    "completion",
 }
 
