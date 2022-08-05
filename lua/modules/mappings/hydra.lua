@@ -8,11 +8,11 @@ hydra {
     hint = [[
 ╭──────╮
 │ ╭──╮°│ _f_: files      _m_: maps
-│ │  │ │ _g_: grep       _/_: search in file
+│ │  │ │ _g_: grep       _/_: search in file     _<space>_: gio module
 │ ╰──╯ │ _r_: resume     _h_: help
 ╰──────╯
 ^
-   _<enter>_: default                _<esc>_ 
+   _<enter>_: default                                           _<esc>_ 
 ]],
     config = {
         color = "teal",
@@ -32,6 +32,7 @@ hydra {
         {"/", cmd "Telescope current_buffer_fuzzy_find", {descr = "Search in current buffer"}},
         {"h", cmd "Telescope help_tags",                 {descr = "Browse help tags"        }},
         {"<enter>", cmd "Telescope",                     {descr = "Default telescope picker"}},
+        {"<space>", cmd "Gio module",                    {descr = "Gio module picker"       }},
         {"<esc>", nil,                                   {exit  = true, nowait = true       }},
     },
 }
