@@ -2,5 +2,5 @@
 
 require "gio.commands"
 return {
-    compose = require "gio.composer"
+  compose = require "gio.composer",
 }

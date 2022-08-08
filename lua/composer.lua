@@ -1,10 +1,9 @@
-require "gio".compose {
-    "colors",
-    "vim",
-    "navigation",
-    "misc",
-    "mappings",
-    "git",
-    "completion",
+require("gio").compose {
+  "colors",
+  "vim",
+  "navigation",
+  "misc",
+  "mappings",
+  "git",
+  "completion",
 }
-
