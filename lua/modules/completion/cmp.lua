@@ -1,11 +1,7 @@
 local cmp = require "cmp"
 
-local function termcode(key)
-    return vim.api.nvim_replace_termcodes(key, true, true, true)
-end
-
 cmp.setup {
-    sources = cmp.config.sources {
+    sources = {
         { name = "buffer" },
         { name = "luasnip" },
         { name = "path" },
@@ -27,28 +23,42 @@ cmp.setup {
             max_height = 12,
         },
     },
-    mappings = {
-        ["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
-        ["<Tab>"] = cmp.mapping(function(fallback)
+    mapping = {
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.close(),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        },
+        ["<Tab>"] = cmp.mapping(function(callback)
             if cmp.visible() then
                 cmp.select_next_item()
+            elseif require "luasnip".expandable() then
+                require "luasnip".expand()
             elseif require "luasnip".expand_or_jumpable() then
-                vim.fn.feedkeys(termcode "<Plug>luasnip-expand-or-jump", "")
+                require "luasnip".expand_or_jump()
             else
-                fallback()
+                callback()
             end
-        end),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        end, {
+                "i",
+                "s",
+            }),
+        ["<S-Tab>"] = cmp.mapping(function(_)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif require "luasnip".jumpable(-1) then
-                vim.fn.feedkeys(termcode "<Plug>luasnip-jump-prev", "")
+                require "luasnip".jump(-1)
             else
-                fallback()
+                vim.cmd ":<"
             end
-        end)
+        end),
     },
-    completion = { keyword_length = 3 },
-    preselect = cmp.PreselectMode.None,
-    experimental = { ghost_text = true },
-}
+        preselect = cmp.PreselectMode.None,
+        experimental = { ghost_text = true },
+    }
+

@@ -4,9 +4,9 @@ return {
     ["source"] = {
         ["packages"] = {
             ["hrsh7th/nvim-cmp"] = { config = "cmp" },
-            ["hrsh7th/cmp-buffer"] = { after = "nvim-cmp" },
-            ["hrsh7th/cmp-path"] = { after = "nvim-cmp" },
-            ["saadparwaiz1/cmp_luasnip"] = { after = "nvim-cmp" },
+            ["hrsh7th/cmp-buffer"] = {},
+            ["hrsh7th/cmp-path"] = {},
+            ["saadparwaiz1/cmp_luasnip"] = {},
             ["L3MON4D3/LuaSnip"] = { module = "luasnip" },
         },
     },
