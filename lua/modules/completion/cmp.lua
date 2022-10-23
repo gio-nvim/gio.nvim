@@ -5,6 +5,7 @@ cmp.setup {
     { name = "buffer" },
     { name = "luasnip" },
     { name = "path" },
+    { name = "lsp" },
   },
   snippet = {
     expand = function(args)
