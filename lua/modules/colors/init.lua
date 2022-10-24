@@ -4,7 +4,8 @@ return {
   ["source"] = {
     ["packages"] = {
       --["catppuccin/nvim"] = { as = "catppuccin", config = "catppuccin" },
-      ["projekt0n/github-nvim-theme"] = { config = "github" },
+      --["projekt0n/github-nvim-theme"] = { config = "github" },
+      ["rebelot/kanagawa.nvim"] = { config = "kanagawa" },
       ["nvim-treesitter/nvim-treesitter"] = {
         config = "parsers",
         event = "BufEnter",
