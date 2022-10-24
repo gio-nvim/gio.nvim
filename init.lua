@@ -35,7 +35,6 @@ vim.api.nvim_command "syntax off"
 vim.api.nvim_command "filetype off"
 vim.api.nvim_command "filetype plugin indent off"
 
-vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
 -- TODO: auto-determine this one
