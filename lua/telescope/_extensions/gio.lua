@@ -8,24 +8,24 @@ local previewers = require "telescope.previewers"
 
 local function modules()
   local module_path = table.concat { vim.fn.stdpath "config", vim.fn.expand "/lua/modules/" }
-  local module_str = vim.fn.expand(table.concat { module_path, "*" }):gsub(module_path, ""):gsub("\\", "/")
-  return vim.split(module_str, "\n")
+  local module_string = vim.fn.expand(table.concat { module_path, "*" }):gsub(module_path, ""):gsub("\\", "/")
+  return vim.split(module_string, "\n")
 end
 
-local function str_definition(def)
+local function str_definition(definition)
   local lines = {}
-  table.insert(lines, "Name:        " .. def.name)
-  table.insert(lines, "Description: " .. def.description)
-  for pkg_source, _ in pairs(def.source.packages or {}) do
-    table.insert(lines, "> package:" .. pkg_source)
+  table.insert(lines, "Name:        " .. definition.name)
+  table.insert(lines, "Description: " .. definition.description)
+  for package_source, _ in pairs(definition.source.packages or {}) do
+    table.insert(lines, "> package:" .. package_source)
   end
-  for scr_source, _ in pairs(def.source.scripts or {}) do
-    table.insert(lines, "> script:" .. scr_source)
+  for script_source, _ in pairs(definition.source.scripts or {}) do
+    table.insert(lines, "> script:" .. script_source)
   end
   return lines
 end
 
-local function side_value(whole, middle)
+local function quarter(whole, middle)
   return math.floor((whole - middle) / 2)
 end
 
@@ -34,40 +34,40 @@ local function adjust_padding(width, height, lines)
   for _, line in ipairs(lines) do
     max_len = math.max(max_len, #line)
   end
-  local hor_padding = side_value(width, max_len)
+  local horizontal_padding = quarter(width, max_len)
   for idx, line in ipairs(lines) do
-    lines[idx] = string.rep(" ", hor_padding) .. line
+    lines[idx] = string.rep(" ", horizontal_padding) .. line
   end
 
-  local vert_padding = side_value(height, #lines)
-  for _ = 1, vert_padding do
+  local vertical_padding = quarter(height, #lines)
+  for _ = 1, vertical_padding do
     table.insert(lines, 1, "")
   end
 
   return lines
 end
 
-local function apply_hl_on_search(hlname, search, line, linenum, bufnr)
-  local spos, epos = line:find(search)
-  if epos ~= nil then
-    vim.api.nvim_buf_add_highlight(bufnr, 0, hlname, linenum - 1, spos - 1, epos)
+local function apply_hl_on_search(hlname, search, line, line_num, bufnr)
+  local start_position, end_position = line:find(search)
+  if end_position ~= nil then
+    vim.api.nvim_buf_add_highlight(bufnr, 0, hlname, line_num - 1, start_position - 1, end_position)
     return true
   end
   return false
 end
 
 local function highlight(lines, bufnr)
-  vim.api.nvim_set_hl(0, "GioTelescopeDef", { link = "TSKeyword" })
-  vim.api.nvim_set_hl(0, "GioSourcePrefix", { link = "MiniTestPass" })
+  vim.api.nvim_set_hl(0, "GioTelescopeDefinition", {})
+  vim.api.nvim_set_hl(0, "GioSourcePrefix", {})
   for line_num, line in ipairs(lines) do
     if line ~= "" then
-      local function hl_def(key)
-        return apply_hl_on_search("GioTelescopeDef", key, line, line_num, bufnr)
+      local function hl_definition(key)
+        return apply_hl_on_search("GioTelescopeDefinition", key, line, line_num, bufnr)
       end
       local function hl_prefix(prefix)
         return apply_hl_on_search("GioSourcePrefix", prefix, line, line_num, bufnr)
       end
-      _ = hl_def "Name:" or hl_def "Description:" or hl_prefix "script:" or hl_prefix "package:"
+      _ = hl_definition "Name:" or hl_definition "Description:" or hl_prefix "script:" or hl_prefix "package:"
     end
   end
 end
