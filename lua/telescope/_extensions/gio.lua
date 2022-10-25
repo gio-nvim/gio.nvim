@@ -57,8 +57,6 @@ local function apply_hl_on_search(hlname, search, line, line_num, bufnr)
 end
 
 local function highlight(lines, bufnr)
-  vim.api.nvim_set_hl(0, "GioTelescopeDefinition", {})
-  vim.api.nvim_set_hl(0, "GioSourcePrefix", {})
   for line_num, line in ipairs(lines) do
     if line ~= "" then
       local function hl_definition(key)
