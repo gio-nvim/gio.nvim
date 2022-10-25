@@ -3,4 +3,5 @@
 require "gio.commands"
 return {
   compose = require "gio.composer",
+  utils = require "gio.utils",
 }
