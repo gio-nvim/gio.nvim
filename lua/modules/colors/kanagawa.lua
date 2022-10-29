@@ -1,7 +1,7 @@
 vim.cmd.colorscheme "kanagawa"
 
-local kanagawa_colors = require "kanagawa.colors".setup()
-local hig = require "gio".utils.highlight
+local kanagawa_colors = require("kanagawa.colors").setup()
+local hig = require("gio").utils.highlight
 
 hig {
   name = "TelescopePromptTitle",

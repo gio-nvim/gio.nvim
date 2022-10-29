@@ -1,6 +1,6 @@
 local configs = require "lspconfig"
 
-local capabilities = require "cmp_nvim_lsp".default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local function on_attach()
   local function nmap(args)
     vim.keymap.set("n", args[1], args[2], { buffer = true })
@@ -23,4 +23,3 @@ configs["rust_analyzer"].setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
-
